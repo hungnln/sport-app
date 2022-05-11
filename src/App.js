@@ -12,7 +12,7 @@ function App() {
     <Router history={history}>
       <Switch>
         <HomeTemplate path={'/'} exact Component={Home} />
-        <Route path={'/login'} exact Component={Login} />
+        <Route path={'/login'} exact component={Login} />
         <Route path="/register" exact component={Register} />
       </Switch>
     </Router>

@@ -1,56 +1,50 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './style.scss'
+import { useFormik } from 'formik'
 export default function Login(props) {
-  const [className, setClassName] = useState('')
+
+  const loginFrom = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validate: values => {
+      const errors = {}
+      if (!values.username) {
+        errors.username = "Required"
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.username)) {
+        errors.username = " Invalid username"
+      }
+    }
+
+
+
+  })
+
+
+
   return (
-    <div className='login-signup-body'>
-      <div className={`container ${className}`} id="container">
-        <div className="form-container sign-up-container">
-          <form action="#">
-            <h1>Create Account</h1>
-            <div className="social-container">
-              <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-              <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
-              <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
-          </form>
-        </div>
-        <div className="form-container sign-in-container">
-          <form action="#">
-            <h1>Sign in</h1>
-            <div className="social-container">
-              <a href="#" className="social"><i className="fab fa-facebook-f" /></a>
-              <a href="#" className="social"><i className="fab fa-google-plus-g" /></a>
-              <a href="#" className="social"><i className="fab fa-linkedin-in" /></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
-          </form>
-        </div>
-        <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>To keep connected with us please login with your personal info</p>
-              <button className="ghost" id="signIn" onClick={() => setClassName('')}>Sign In</button>
-            </div>
-            <div className="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button className="ghost" id="signUp" onClick={() => { setClassName('right-panel-active') }}>Sign Up</button>
-            </div>
+    <div>
+      <div className='container'>
+        <div className='login'>
+          <h2 className='login__heading'>Login</h2>
+          <div className='login__body'>
+            <form>
+              <div className='form form-group'>
+                <input type="text" id="username " className="form__input" autoComplete="off" placeholder=" " />
+                <label htmlFor='username' className='form__label'>Username</label>
+              </div>
+              <div className='form form-group'>
+                <input type="password" id="password" className="form__input" autoComplete="off" placeholder=" " />
+                <label htmlFor="username" className="form__label">Password</label>
+              </div>
+              <button type='submit' className='btn btn-primary'>Login</button>
+              <div><span>Don't have account ?</span><NavLink to={'/register'}>Register</NavLink></div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
-
+    </div >
   )
 }

@@ -6,6 +6,9 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate';
 import Home from './pages/Home/Home';
+import './form.js'
+import './form.scss'
+import $ from 'jquery'
 export const history = createBrowserHistory();
 function App() {
   return (
